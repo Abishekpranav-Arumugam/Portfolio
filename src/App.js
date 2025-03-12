@@ -23,12 +23,26 @@ import Notfound from "./pages/blogs_page/notfound";
 import TechnicalJourney from "./components/aboutme/journey/TechnicalJourney";
 import ProjectJourney from "./components/aboutme/journey/ProjectJourney";
 import SocialMedia from "./components/aboutme/social_media/SocialMedia";
-// import Zoom from 'react-reveal/Zoom';
 import Toolkit from "./components/aboutme/skills/Toolkit";
 
 function App() {
   const [load, updateLoad] = useState(true);
 
+  // Load Google AdSense script
+  useEffect(() => {
+    const loadAdSenseScript = () => {
+      const script = document.createElement("script");
+      script.src =
+        "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8207152631057223";
+      script.async = true;
+      script.crossOrigin = "anonymous";
+      document.head.appendChild(script);
+    };
+
+    loadAdSenseScript();
+  }, []);
+
+  // Preloader timer
   useEffect(() => {
     const timer = setTimeout(() => {
       updateLoad(false);
